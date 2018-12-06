@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,17 +17,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         txtHello = findViewById(R.id.txtHello);
+        txtHello.setClickable(true);
+        txtHello.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AnotherActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // ATTENTION: This was auto-generated to handle app links.
         Intent appLinkIntent = getIntent();
-        String appLinkAction = appLinkIntent.getAction();
+        //String appLinkAction = appLinkIntent.getAction();
         Uri appLinkData = appLinkIntent.getData();
 
         if (appLinkData != null)
         {
             txtHello.setText(
                     "URI: " + appLinkData.toString() + "\n\n" +
-                    "Action: " + appLinkAction.toString() + "\n\n" +
+                    //"Action: " + appLinkAction.toString() + "\n\n" +
                     "Encoded Path: " + appLinkData.getEncodedPath() + "\n\n" +
                     "Query: " + appLinkData.getEncodedQuery() + "\n\n" +
                     "Query Action: " + appLinkData.getQueryParameter(".a") + "\n\n" +
